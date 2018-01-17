@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="test" v="4.4" dv="2.0" rws="_15159906341894" Pws="_15159906341894" cws="_15159906341894" persistenceUnitName="JPATesterPU" ee="JAVA_EE_8" sm="false" xs="false" id="_15159906317931" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:mapped-superclass compositePrimaryKeyClass="PersonPK" abs="false" class="Person" v="true" jbn="false" xre="false" m="false" rootElement="_15159906317931" id="_1515990811606">
+        <jpa:ath>rupak</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_151599132927612">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="age" id="_151599139598013">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:embedded connected-class-id="_1515998367878" v="true" name="address" id="_151599846683523"/>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_151599132269311">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+    </jpa:mapped-superclass>
+    <jpa:entity compositePrimaryKeyClass="EmployeePK" abs="false" class="Employee" superclassId="_1515990811606" v="true" jbn="false" xre="false" m="false" rootElement="_15159906317931" id="_1515991694356">
+        <jpa:ath>rupak</jpa:ath>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_1516101333958" connected-attribute-id="_151610139763214" v="true" name="department" id="_151610139762713"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Employee.findAll">
+            <jpa:query>Select e from Employee e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CustomerPK" abs="false" class="Customer" superclassId="_1515990811606" v="true" jbn="false" xre="false" m="false" rootElement="_15159906317931" id="_1515991780714">
+        <jpa:ath>rupak</jpa:ath>
+        <jpa:attributes>
+            <jpa:many-to-one primaryKey="false" connected-entity-id="_1515991694356" v="true" xvt="" name="primaryContact" id="_151610181137915">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:many-to-one>
+            <jpa:one-to-many own="true" collection-type="java.util.List" connected-entity-id="_1515998518848" v="true" name="productOrders" id="_151599876064428"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Customer.findAll">
+            <jpa:query>Select e from Customer e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="ProductOrderPK" abs="false" class="ProductOrder" v="true" xre="false" m="false" rootElement="_15159906317931" id="_1515998518848">
+        <jpa:ath>rupak</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_151599855070126">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="type" id="_151599855203427">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_151599851884924">
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="ProductOrder.findAll">
+            <jpa:query>Select e from ProductOrder e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ProductOrder.findByName">
+            <jpa:query>Select p from ProductOrder p where p.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="ProductOrder.findByType">
+            <jpa:query>Select p from ProductOrder p where p.type=:type</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="DepartmentPK" abs="false" class="Department" v="true" xre="false" m="false" rootElement="_15159906317931" id="_1516101333958">
+        <jpa:ath>rupak</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" name="name" id="_151610134739112"/>
+            <jpa:one-to-many collection-type="java.util.List" connected-entity-id="_1515991694356" connected-attribute-id="_151610139762713" v="true" name="employees" id="_151610139763214"/>
+            <jpa:id attribute-type="Long" v="true" name="id" id="_151610133402910">
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Department.findAll">
+            <jpa:query>Select e from Department e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Department.findByName">
+            <jpa:query>Select d from Department d where d.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:embeddable abs="false" class="Address" v="true" xre="false" m="false" rootElement="_15159906317931" id="_1515998367878">
+        <jpa:ath>rupak</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="street" id="_151599838529119">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="city" id="_151599838637720">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="state" id="_151599838687121">
+                <jpa:xwm nil="false" req="false"/>
+                <jpa:xm nil="false" req="false"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:snp loc="BEFORE_PACKAGE" e="true">/**
+ * This file was generated by the Jeddict
+ */</jpa:snp>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_15159906341894">
+            <i ref="_1515991780714" x="256" y="254"/>
+            <i ref="_1515998367878" x="518" y="10"/>
+            <i ref="_1515991694356" x="53" y="444"/>
+            <i ref="_1515990811606" x="105" y="10"/>
+            <i ref="_1516101333958" x="534" y="343"/>
+            <i ref="_1515998518848" x="534" y="148"/>
+        </jpa:ws>
+    </jpa:wsl>
+</jpa:entity-mappings>
